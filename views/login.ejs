@@ -1,0 +1,24 @@
+<div class="container-form">
+  <form action="/users/login" class="login-form" method="POST">
+    <%- include('messages.ejs') %>
+    <h3>Login</h3>
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="Enter your email address"
+    />
+
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Enter your password"
+    />
+    <p>Create an account? <a class="bl-tag" href="/users/register">Register</a></p>
+
+    <input type="submit" class="btn" value="Submit" />
+  </form>
+</div>

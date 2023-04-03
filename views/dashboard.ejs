@@ -1,0 +1,31 @@
+<div class="body">
+  <div class="h-text">
+    <% if (user) {%>
+    <h1>Welcome <%= user.name %></h1>
+    <% } %> <% if (!user) {%>
+    <h1>Welcome to our blog</h1>
+    <% } %>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus
+      placeat fuga voluptate officiis, quis quo!
+    </p>
+    <div class="line">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+  </div>
+  <%- include('messages.ejs') %>
+  <div class="content">
+   <% posts.forEach(post => { %>
+    <div class="box">
+      <div class="wrap">
+        <h3 align="center"><%= post.title %></h3>
+        <p class="muted"><%= post.createAt.toLocaleDateString() %></p>
+        <p><%= post.body %></p>
+      </div>
+      <a class="btn" href="/posts/<%= post.id %>">Readmore</a>
+    </div>
+    <%})%>
+  </div>
+</div>

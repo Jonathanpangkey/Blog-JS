@@ -1,0 +1,19 @@
+<div class="container-form">
+    <form class="new-form" action="/posts/edit/<%= post.id %>" method="post">
+      <h3>New data</h3>
+      <div class="form-group">
+        <label for="description">Give a rate (like good,bad,etc)</label>
+        <input type="text" name="title" class="form-control" id="title" value="<%= post.title %>">
+      </div>
+      <div class="form-group mb-2">
+        
+      <label for="markdown">What is your progress today?</label>
+      <div class="grow-wrap">
+      <textarea required name="body" id="body" class="textarea form-control" onInput="this.parentNode.dataset.replicatedValue = this.value"><%= post.body %></textarea>
+      </div>
+      
+      <a href="/" class="btn btn-secondary mt-2">Cancel</a>
+      <button type="submit" class="btn btn-gold mt-2">Save</button>
+    </form>
+    
+  </div>
