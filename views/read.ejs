@@ -1,19 +1,41 @@
 <div class="body">
   <h1><%= post.title %></h1>
   <br />
-  <p class="muted">author : <%= post.email %></p>
+  <p class="muted">Author: <%= post.email %></p>
   <p class="muted"><%= post.createAt.toLocaleDateString() %></p>
- <div class="btn-group">
-  <% if (post.email == user) {%>
-    <a class="btn" href="/posts/edit/<%=post.id%>">Edit</a>
-    <a
-      class="delbtn"
-      onclick="return confirm('are you sure want to remove it?')"
-      href="/posts/delete/<%= post.id %>"
-      >Delete</a
-    >
+  
+  <div class="btn-group">
+    <% if (post.email == user) { %>
+      <a class="btn" href="/posts/edit/<%= post.id %>">Edit</a>
+      <a class="delbtn" onclick="return confirm('Are you sure you want to remove it?')" href="/posts/delete/<%= post.id %>">Delete</a>
     <% } %>
     <a href="/dashboard" class="btn">Dashboard</a>
- </div>
+  </div>
+  
   <p style="white-space: pre-line; margin-top: 30px"><%= post.body %></p>
+
+  <br /><br /><br /><br />
+
+  <% if (user) { %>
+    <form class="comment-form" action="/posts/<%= post.id %>/comments" method="post">
+      <h3>Add a comment</h3>
+      <textarea name="body"></textarea>
+      <button type="submit" class="btn">Comment</button>
+    </form>
+  <% } %>
+
+  <h3>Comments</h3>
+  <% post.comments.sort((a, b) => b.date - a.date).forEach((comment) => { %>
+    <div class="comment">
+      <div class="text">
+        <span class="muted"><%= comment.user %> : </span>
+        <p><%= comment.body %></p>
+        <span class="muted"><%= comment.date.toLocaleDateString() %></span>
+        <% if (user && comment.email == user) { %>
+          <p class="icon" onclick="return confirm('Are you sure you want to remove it?')"><a href="/posts/<%= post.id %>/comments/<%= comment.id %>"><i class="fas fa-trash-alt"></i></a></p> 
+        <% } %>
+      </div>
+    </div>
+    <br />
+  <% }) %>
 </div>
