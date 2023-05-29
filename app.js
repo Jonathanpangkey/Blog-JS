@@ -8,7 +8,6 @@ const User = require("./models/User");
 const Post = require("./models/Post");
 require("dotenv").config();
 
-// initilize app
 const app = express();
 
 // passport config
@@ -31,7 +30,7 @@ app.set("view engine", "ejs");
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Connect flash
+// Connect flash middleware
 app.use(flash());
 
 async function connectToDB() {

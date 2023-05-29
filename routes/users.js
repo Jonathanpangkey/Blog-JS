@@ -37,7 +37,7 @@ router.post("/register", async (req, res) => {
       password,
       password2,
     });
-  } else {
+  } else { //nanti coba hapus dpe else
     try {
       const user = await User.findOne({ email: email });
       if (user) {
@@ -60,7 +60,7 @@ router.post("/register", async (req, res) => {
         const hash = await bcrypt.hash(newUser.password, salt);
         newUser.password = hash;
 
-        const savedUser = await newUser.save();
+        const savedUser = await newUser.save(); //nanti coba nd ush taru di variabel
         req.flash("success_msg", "You are now registered and can log in");
         res.redirect("/users/login");
       }
@@ -81,7 +81,7 @@ router.post("/login", (req, res, next) => {
 
 // logout
 router.get('/logout', (req, res) => {
-  req.logout(() => {
+  req.logout(() => { //pake await jo
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/login');
   });
